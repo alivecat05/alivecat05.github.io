@@ -2,7 +2,7 @@
 
 Live website: **https://alivecat05.github.io/**
 
-中英文个人学术主页，使用原生 HTML、CSS 和 JavaScript，无构建步骤或运行时依赖。默认英文，语言切换会保存到浏览器。禁用 JavaScript 也能阅读全部英文内容。
+二次元亚比哥特风中英文个人主页：黑紫底色、粉紫点缀、哥特字体、原创动漫插画、窗口式动态区与研究收藏卡片。使用原生 HTML、CSS 和 JavaScript，无构建步骤或运行时依赖。默认英文，语言切换会保存到浏览器。禁用 JavaScript 也能阅读全部英文内容。
 
 ## 本地预览
 
@@ -42,4 +42,11 @@ python3 -m http.server 8000
 - 大晓机器人：原始 SVG 来自 [ACE Robotics 官网](https://www.acerobotics.com/images/logo.svg)。
 - 深圳大学：原始 PNG 来自 [深圳大学官网](https://www.szu.edu.cn/images/logo_03.png)。
 
-标志保持原始比例与配色，仅用于标注本人所属机构，不表示机构对本网站的额外背书。论文配图归原作者所有，仅用于介绍本人的相关研究工作。首页线框图为概念示意，不是实验结果。没有使用未提供的个人照片。
+标志保持原始比例与配色，仅用于标注本人所属机构，不表示机构对本网站的额外背书。论文配图归原作者所有，仅用于介绍本人的相关研究工作。
+
+## 视觉素材
+
+- `assets/gothic-muse.png`：使用内置 imagegen 生成的原创哥特动漫插画。角色为虚构形象，不是本人的照片或肖像。[生成提示词](assets/gothic-muse.prompt.txt)。
+- `assets/fonts/unifrakturmaguntia.ttf`：本地托管的 UnifrakturMaguntia 哥特字体，来自 Google Fonts；SIL Open Font License 见 `assets/fonts/OFL.txt`。正文使用系统字体。
+- `assets/favicon.svg`：代码绘制的猫咪与十字星图标。
+- 所有字体、插画与机构标志均随仓库存储，浏览主页无需访问第三方素材 CDN。
