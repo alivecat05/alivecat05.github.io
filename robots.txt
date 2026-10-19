@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alivecat05.github.io/sitemap.xml
