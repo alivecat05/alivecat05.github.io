@@ -2,7 +2,7 @@
 
 Live website: **https://alivecat05.github.io/**
 
-二次元亚比哥特风中英文个人主页：黑紫底色、粉紫点缀、哥特字体、原创动漫插画、窗口式动态区与研究收藏卡片。使用原生 HTML、CSS 和 JavaScript，无构建步骤或运行时依赖。默认英文，语言切换会保存到浏览器。禁用 JavaScript 也能阅读全部英文内容。
+Y2K 千禧年亚文化风中英文个人主页：黑绿底色、酸性绿点缀、银色金属字、光盘与轨道图形、早期电脑窗口。全站不展示人物图像，论文使用原创抽象矢量封面。背景带缓慢网格漂移、扫描光带与桌面鼠标视差；页脚可暂停动效，偏好保存在本机，并自动遵循系统减少动态效果设置。页面不可见时暂停动画。使用原生 HTML、CSS 和 JavaScript，无构建步骤或运行时依赖。默认英文，语言切换会保存到浏览器。禁用 JavaScript 也能阅读全部英文内容。
 
 ## 本地预览
 
@@ -16,11 +16,11 @@ python3 -m http.server 8000
 
 - `index.html`：简介、研究兴趣、动态、论文、经历和联系方式。双语文案使用 `data-en`、`data-zh` 属性，并保留标签内的默认英文正文。
 - `styles.css`：布局、字体、配色，以及手机和打印样式。
-- `script.js`：语言切换、论文筛选。
+- `script.js`：语言切换、论文筛选、动效偏好与轻量鼠标视差。
 - `assets/`：论文配图、BibTeX 引用、网站图标和分享预览图。
 - `sitemap.xml`：更新内容时同步修改 `lastmod`。
 
-新增论文时复制一个 `.publication` 块，修改内容、链接、图片与 BibTeX；`data-category` 可用 `embodied`、`multimodal` 或 `interpretability`。若增加分类，需同时增加筛选按钮。论文页眉、页脚更新时间和 news 条目手动维护。
+新增论文时复制一个 `.publication` 块，修改内容、链接、抽象封面与 BibTeX；`data-category` 可用 `embodied`、`multimodal` 或 `interpretability`。若增加分类，需同时增加筛选按钮。论文页眉、页脚更新时间和 news 条目手动维护。
 
 ## GitHub Pages 部署
 
@@ -46,7 +46,9 @@ python3 -m http.server 8000
 
 ## 视觉素材
 
-- `assets/gothic-muse.png`：使用内置 imagegen 生成的原创哥特动漫插画。角色为虚构形象，不是本人的照片或肖像。[生成提示词](assets/gothic-muse.prompt.txt)。
-- `assets/fonts/unifrakturmaguntia.ttf`：本地托管的 UnifrakturMaguntia 哥特字体，来自 Google Fonts；SIL Open Font License 见 `assets/fonts/OFL.txt`。正文使用系统字体。
-- `assets/favicon.svg`：代码绘制的猫咪与十字星图标。
-- 所有字体、插画与机构标志均随仓库存储，浏览主页无需访问第三方素材 CDN。
+- 首页光盘、轨道、网格、扫描光带由 CSS 绘制，无图片下载或第三方动效库。
+- `assets/cover-*.svg`：代码绘制的抽象研究封面，不含人物，不代表论文原始实验图。
+- `assets/favicon.svg`：光盘与轨道图标。
+- `assets/social-y2k.png`：与主页一致的无人物分享预览图。
+- 字体使用系统无衬线与等宽字体，不加载第三方字体。
+- 原论文配图保留作资料存档，不再在页面展示；旧动漫插画与旧分享图已移除。
