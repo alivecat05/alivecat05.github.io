@@ -95,5 +95,33 @@
     updateStatus();
     updateMotion();
   });
+  const figureViewer = document.getElementById('figure-viewer');
+  if (typeof figureViewer.showModal === 'function') {
+    const fullFigure = document.getElementById('figure-full');
+    let figureOpener = null;
+    document.querySelectorAll('.paper-image').forEach(link => {
+      link.addEventListener('click', event => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+        event.preventDefault();
+        figureOpener = link;
+        const preview = link.querySelector('img');
+        fullFigure.src = link.href;
+        fullFigure.alt = preview.alt;
+        document.getElementById('figure-title').textContent = link.closest('.publication').querySelector('h3').textContent;
+        document.getElementById('figure-original').href = link.href;
+        figureViewer.showModal();
+        document.documentElement.classList.add('figure-open');
+      });
+    });
+    document.getElementById('figure-close').addEventListener('click', () => figureViewer.close());
+    figureViewer.addEventListener('click', event => {
+      const bounds = figureViewer.getBoundingClientRect();
+      if (event.target === figureViewer && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) figureViewer.close();
+    });
+    figureViewer.addEventListener('close', () => {
+      document.documentElement.classList.remove('figure-open');
+      figureOpener?.focus({ preventScroll: true });
+    });
+  }
   document.getElementById('year').textContent = new Date().getFullYear();
 })();

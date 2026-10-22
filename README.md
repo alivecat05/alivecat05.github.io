@@ -47,7 +47,7 @@ python3 -m http.server 8000
 ## 视觉素材
 
 - 首页光盘、轨道、网格、扫描光带由 CSS 绘制，无图片下载或第三方动效库。
-- 研究档案使用 `embodied-framework.svg`、`ace-data-0.webp`、`keyvt.png`、`sparsemax-sae.png` 和 `retllm.png`，来源见「内容依据」。保持原图比例、配色和完整内容；点击图片可在新标签页查看原图。
+- 研究档案使用 `embodied-framework.svg`、`ace-data-0.webp`、`keyvt.png`、`sparsemax-sae.png` 和 `retllm.png`，来源见「内容依据」。保持原图比例、配色和完整内容；卡片按图片原始比例自动撑高，不裁切；点击图片可在适应屏幕的大图预览中看全整图，并支持打开原图、Esc 关闭及键盘操作。禁用 JavaScript 时仍可通过图片链接打开原图。
 - `assets/favicon.svg`：光盘与轨道图标。
 - `assets/social-y2k.png`：与主页一致的无人物分享预览图。
 - 字体使用系统无衬线与等宽字体，不加载第三方字体。
