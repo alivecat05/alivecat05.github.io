@@ -8,24 +8,33 @@
   const background = document.querySelector('.ambient-grid');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-  let motionPaused = false;
+  let motionPreference = 'system';
   let pointerFrame = 0;
   let pointerX = 0;
   let pointerY = 0;
-  try { motionPaused = localStorage.getItem('homepage-motion') === 'paused'; } catch { /* Optional preference. */ }
-  function motionStopped() { return motionPaused || reduceMotion.matches || document.hidden; }
+  try {
+    const saved = localStorage.getItem('homepage-motion');
+    if (saved === 'paused' || saved === 'running') motionPreference = saved;
+  } catch { /* Optional preference. */ }
+  function motionDisabled() {
+    return motionPreference === 'paused' || (motionPreference === 'system' && reduceMotion.matches);
+  }
+  function motionStopped() { return motionDisabled() || document.hidden; }
   function updateMotion() {
+    const paused = motionDisabled();
+    const systemReduced = motionPreference === 'system' && reduceMotion.matches;
+    document.documentElement.dataset.motionPreference = motionPreference;
     document.documentElement.dataset.motion = motionStopped() ? 'paused' : 'running';
     motionButton.hidden = false;
-    motionButton.disabled = reduceMotion.matches;
-    motionButton.setAttribute('aria-pressed', String(motionPaused));
-    motionButton.textContent = reduceMotion.matches
-      ? (language === 'zh' ? '动效：系统已减弱' : 'FX: REDUCED')
+    motionButton.disabled = false;
+    motionButton.setAttribute('aria-pressed', String(paused));
+    motionButton.textContent = systemReduced
+      ? (language === 'zh' ? '动效：已减弱 · 点击开启 ↗' : 'FX: REDUCED · PLAY ↗')
       : language === 'zh'
-        ? (motionPaused ? '动效：关 · 开启 ↗' : '动效：开 · 暂停 Ⅱ')
-        : (motionPaused ? 'FX: OFF · PLAY ↗' : 'FX: ON · PAUSE Ⅱ');
-    motionButton.title = reduceMotion.matches
-      ? (language === 'zh' ? '遵循系统的“减少动态效果”设置' : 'Following your system’s reduced motion preference')
+        ? (paused ? '动效：关 · 开启 ↗' : '动效：开 · 暂停 Ⅱ')
+        : (paused ? 'FX: OFF · PLAY ↗' : 'FX: ON · PAUSE Ⅱ');
+    motionButton.title = systemReduced
+      ? (language === 'zh' ? '默认遵循系统设置；点击可为本站开启动效' : 'Following your system preference; click to enable motion on this site')
       : (language === 'zh' ? '控制背景网格、轨道光点和光盘动画' : 'Control the animated grid, orbital signals and compact disc');
     if (motionStopped()) {
       cancelAnimationFrame(pointerFrame);
@@ -35,8 +44,8 @@
     }
   }
   motionButton.addEventListener('click', () => {
-    motionPaused = !motionPaused;
-    try { localStorage.setItem('homepage-motion', motionPaused ? 'paused' : 'running'); } catch { /* Optional preference. */ }
+    motionPreference = motionDisabled() ? 'running' : 'paused';
+    try { localStorage.setItem('homepage-motion', motionPreference); } catch { /* Optional preference. */ }
     updateMotion();
   });
   reduceMotion.addEventListener('change', updateMotion);
