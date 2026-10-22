@@ -16,11 +16,17 @@
   function motionStopped() { return motionPaused || reduceMotion.matches || document.hidden; }
   function updateMotion() {
     document.documentElement.dataset.motion = motionStopped() ? 'paused' : 'running';
-    motionButton.hidden = reduceMotion.matches;
+    motionButton.hidden = false;
+    motionButton.disabled = reduceMotion.matches;
     motionButton.setAttribute('aria-pressed', String(motionPaused));
-    motionButton.textContent = language === 'zh'
-      ? (motionPaused ? '开启动效 ↗' : '暂停动效 Ⅱ')
-      : (motionPaused ? 'Play motion ↗' : 'Pause motion Ⅱ');
+    motionButton.textContent = reduceMotion.matches
+      ? (language === 'zh' ? '动效：系统已减弱' : 'FX: REDUCED')
+      : language === 'zh'
+        ? (motionPaused ? '动效：关 · 开启 ↗' : '动效：开 · 暂停 Ⅱ')
+        : (motionPaused ? 'FX: OFF · PLAY ↗' : 'FX: ON · PAUSE Ⅱ');
+    motionButton.title = reduceMotion.matches
+      ? (language === 'zh' ? '遵循系统的“减少动态效果”设置' : 'Following your system’s reduced motion preference')
+      : (language === 'zh' ? '控制背景网格、轨道光点和光盘动画' : 'Control the animated grid, orbital signals and compact disc');
     if (motionStopped()) {
       cancelAnimationFrame(pointerFrame);
       pointerFrame = 0;
